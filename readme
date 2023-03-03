@@ -1,22 +1,22 @@
-// Run stages only if the branch is master
-piepline {
+pipeline {
+    parameters { string defaultValue: 'master', name: 'branch', trim: true }
     agent any 
     stages {
         stage('STAGE-1') {
             when {
-                branch 'master'
+                branch 'main'
             }
             steps{
-                sh "echo STEGE-2 executes if branch is master"
+                sh '"echo STEGE-2 executes if branch is master"'
             }
         }
 
         stage('STAGE-2'){
             when {
-                branch 'mohan'
+                branch 'test'
             }
             steps{
-                sh "echo STEGE-2 executes if branch is master"
+                sh '"echo STEGE-2 executes if branch is master"'
             }
         }
     }

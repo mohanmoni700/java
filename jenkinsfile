@@ -1,6 +1,9 @@
 pipeline {
 
-    parameters { string defaultValue: 'main', name: 'branch', trim: true }
+    parameters { 
+        string defaultValue: 'main', name: 'branch', trim: true
+        string defaultValue: 'maino', name: 'branchu', trim: true
+     }
 
     environment {
          Myname = "Mohan"
@@ -15,7 +18,7 @@ pipeline {
 				    sh '''
 					pwd
 					sleep 5
-					echo "This is the fist stage: BUILD $my_branch"
+					echo "This is the fist stage: BUILD $my_branch $branchu"
 				    '''
                 }
 				

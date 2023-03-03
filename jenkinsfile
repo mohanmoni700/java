@@ -46,24 +46,31 @@ pipeline {
 					
 					agent { label 'master' }
 			    		steps {
-				    		sh '''
-					    	pwd
-					   		sleep 5
-					    	echo "this is the second stage: TEST $Myname $my_branch"
-				        	'''
+							catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+				    			sh '''
+					    		pwd
+					   			sleep 5
+					    		echo "this is the second stage: TEST $Myname $my_branch"
+								exit 1
+				        		'''
+							}	
 						}	
 		}
 
 
 		stage('DEPLOY') {
+			 
 			agent { label 'slave1' }
 			steps {
-				sh '''
+				
+					sh '''
 					pwd
 					sleep 5
 					echo "This is the fist stage: DEPLOY $my_branch"
-				'''
-			}	
+					
+					'''
+				}	
+				
 		}
 	}
 }

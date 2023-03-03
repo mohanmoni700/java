@@ -11,7 +11,7 @@ pipeline {
          my_branch = "$branch"
     }
 
-	agent none  
+	 
 	stages {
 		stage('BUILD') {
 			parallel {

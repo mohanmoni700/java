@@ -5,13 +5,7 @@ pipeline {
                 string defaultValue: 'main', name: 'branch', trim: true
                 string defaultValue: 'maino', name: 'branchu', trim: true
          }
-
-    environment {
-         Myname = "Mohan"
-         my_branch = "$branch"
-    }
-
-	 
+ 
 	stages {
 		stage('BUILD') {
 			parallel {

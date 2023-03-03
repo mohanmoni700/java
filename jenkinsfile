@@ -4,6 +4,7 @@ pipeline {
 
     environment {
          Myname = "Mohan"
+         my_branch = "$branch"
     }
 
 	agent none  
@@ -14,7 +15,7 @@ pipeline {
 				    sh '''
 					pwd
 					sleep 5
-					echo "This is the fist stage: BUILD"
+					echo "This is the fist stage: BUILD $my_branch"
 				    '''
                 }
 				
@@ -26,7 +27,7 @@ pipeline {
 				    sh '''
 					    pwd
 					    sleep 5
-					    echo "this is the second stage: TEST $Myname"
+					    echo "this is the second stage: TEST $Myname $my_branch"
 				        '''
 			    }	
 		}
@@ -37,7 +38,7 @@ pipeline {
 				sh '''
 					pwd
 					sleep 5
-					echo "This is the fist stage: DEPLOY"
+					echo "This is the fist stage: DEPLOY $my_branch"
 				'''
 			}	
 		}

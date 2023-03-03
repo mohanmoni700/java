@@ -1,0 +1,42 @@
+pipeline {
+    environment {
+         Myname = "Mohan"
+    }
+
+	agent none  
+	stages {
+		stage('BUILD') {
+			agent { label 'slave2' }
+			    steps {
+				    sh '''
+					pwd
+					sleep 5
+					echo "This is the fist stage: BUILD"
+				    '''
+                }
+				
+		}
+		
+		stage('TEST') {
+			agent { label 'master' }
+			    steps {
+				    sh '''
+					    pwd
+					    sleep 5
+					    echo "this is the second stage: TEST $Myname"
+				        '''
+			    }	
+		}
+		
+		stage('DEPLOY') {
+			agent { label 'slave1' }
+			steps {
+				sh '''
+					pwd
+					sleep 5
+					echo "This is the fist stage: DEPLOY"
+				'''
+			}	
+		}
+	}
+}

@@ -13,26 +13,33 @@ pipeline {
 	agent none  
 	stages {
 		stage('BUILD') {
-			agent { label 'slave2' }
-			    steps {
-				    sh '''
-					pwd
-					sleep 5
-					echo "This is the fist stage: BUILD $my_branch $branchu"
-				    '''
+			parallel {
+				stage('test on build') {
+				
+					agent { label 'slave2' }
+			    		steps {
+				   		 sh '''
+						 pwd
+						 sleep 5
+					     echo "This is the fist stage: BUILD $my_branch $branchu"
+				         '''
+						}
                 }
 				
-		}
+				
 		
-		stage('TEST') {
-			agent { label 'master' }
-			    steps {
-				    sh '''
-					    pwd
-					    sleep 5
-					    echo "this is the second stage: TEST $Myname $my_branch"
-				        '''
-			    }	
+		
+				stage('TEST on build 2') {
+					agent { label 'master' }
+			    		steps {
+				    		sh '''
+					    	pwd
+					   		sleep 5
+					    	echo "this is the second stage: TEST $Myname $my_branch"
+				        	'''
+						}	
+			    }
+			}		
 		}
 		
 		stage('DEPLOY') {

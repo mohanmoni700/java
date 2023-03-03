@@ -1,4 +1,8 @@
 pipeline {
+parameters {
+  string defaultValue: 'master', name: 'branch', trim: true
+}
+
      agent any
      stages {
          stage('build') {

@@ -1,17 +1,20 @@
 pipeline {
-parameters {
-  string defaultValue: 'master', name: 'branch', trim: true
+   agent any
+      stages {
+          stage('MyStage') {
+              
+              when {
+                   branch 'master'
+              }
+                steps {
+                    sh '''
+                    echo "This stage will only execute when the branch is master"
+                    '''
+                    
+                 } 
+      
+          }
+      }    
 }
 
-     agent any
-     stages {
-         stage('build') {
-              when {
-                  branch == 'master'         
-              }
-              steps {
-                 echo "Working on master branch"
-              }
-         }
-     }
-}
+

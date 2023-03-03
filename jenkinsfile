@@ -16,11 +16,13 @@ pipeline {
 			parallel {
 				stage('test on build') {
 
+					
+				
+					agent { label 'slave2' }
+
 					when {
 						branch = Mohan
 					}
-				
-					agent { label 'slave2' }
 			    		steps {
 				   		 sh '''
 						 pwd

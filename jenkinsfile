@@ -12,7 +12,7 @@ pipeline {
 				stage('test on build') {
 
 					when {
- 						 branch 'main'
+ 						 branch 'master'
 					}
 			    		steps {
 				   		 sh '''

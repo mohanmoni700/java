@@ -15,6 +15,10 @@ pipeline {
 		stage('BUILD') {
 			parallel {
 				stage('test on build') {
+
+					when {
+						branch = Mohan
+					}
 				
 					agent { label 'slave2' }
 			    		steps {
@@ -31,6 +35,9 @@ pipeline {
 		
 				stage('TEST on build 2') {
 					agent { label 'master' }
+					when {
+						branchu = moni
+					}
 			    		steps {
 				    		sh '''
 					    	pwd
